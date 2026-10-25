@@ -2,6 +2,7 @@ backend:
   name: github
   repo: princeraj0717/shivshaktimandir
   branch: main
+  client_id: Ov23l12FaQX0DSXhJbjx
 
 media_folder: ""
 public_folder: ""
