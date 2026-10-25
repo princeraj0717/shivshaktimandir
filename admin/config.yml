@@ -2,7 +2,6 @@ backend:
   name: github
   repo: princeraj0717/shivshaktimandir
   branch: main
-  base_url: https://shivshaktidham.netlify.app
 
 media_folder: ""
 public_folder: ""
