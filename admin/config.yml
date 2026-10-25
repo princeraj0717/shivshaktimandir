@@ -1,0 +1,17 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: ""
+public_folder: ""
+
+collections:
+  - name: "settings"
+    label: "Website Files"
+    files:
+      - file: "index.html"
+        label: "Main Website Code"
+        name: "index"
+        fields:
+          - {label: "HTML Content", name: "body", widget: "string"}
+          
