@@ -4,8 +4,11 @@ export default function handler(req, res) {
   const protocol = req.headers['x-forwarded-proto'] || 'https';
   const redirectUri = `${protocol}://${host}/api/callback`;
   
-  res.writeHead(302, {
-    Location: `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=repo,user`
-  });
+  const authUrl = new URL('https://github.com/login/oauth/authorize');
+  authUrl.searchParams.append('client_id', clientId);
+  authUrl.searchParams.append('redirect_uri', redirectUri);
+  authUrl.searchParams.append('scope', 'repo,user');
+
+  res.writeHead(302, { Location: authUrl.toString() });
   res.end();
 }
