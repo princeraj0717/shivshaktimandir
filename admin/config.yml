@@ -5,4 +5,12 @@ backend:
 media_folder: ""
 public_folder: ""
 
-collections: []
+collections:
+  - name: "content"
+    label: "Website Content"
+    files:
+      - file: "index.html"
+        label: "Home Page"
+        name: "home"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
