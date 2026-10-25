@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shiv Shakti Dham - नेमाटोल कसबा, पूर्णिया</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Teko:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #5f259f; /* Rich PhonePe Purple */
+            --primary-gradient: linear-gradient(135deg, #5f259f, #8e44ad);
+            --accent-color: #ff6f00; /* Vibrant Saffron */
+            --gold-color: #ffb300;
+            --bg-color: #f7f3fc;
+            --card-bg: #ffffff;
+            --text-color: #2c3e50;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+        header {
+            background: var(--primary-gradient);
+            color: white;
+            text-align: center;
+            padding: 45px 20px;
+            box-shadow: 0 6px 20px rgba(95, 37, 159, 0.25);
+            border-bottom: 4px solid var(--gold-color);
+        }
+        header h1 {
+            font-family: 'Teko', sans-serif;
+            font-size: 3.2rem;
+            letter-spacing: 1px;
+            color: var(--gold-color);
+            text-shadow: 1px 2px 4px rgba(0,0,0,0.3);
+        }
+        header p {
+            font-size: 1.1rem;
+            margin-top: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 25px;
+            font-weight: 500;
+        }
+        /* App Style Navigation (Radio Based) */
+        nav {
+            background-color: #ffffff;
+            padding: 12px 10px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+        }
+        nav input[type="radio"] {
+            display: none;
+        }
+        nav label {
+            background: #f1eefb;
+            color: var(--primary-color);
+            padding: 8px 15px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.04);
+        }
+        nav label:hover {
+            background: #e3d7fc;
+            transform: translateY(-2px);
+        }
+        #tab-about:checked ~ nav label[for="tab-about"],
+        #tab-committee:checked ~ nav label[for="tab-committee"],
+        #tab-sahyog:checked ~ nav label[for="tab-sahyog"],
+        #tab-donors:checked ~ nav label[for="tab-donors"],
+        #tab-gallery:checked ~ nav label[for="tab-gallery"],
+        #tab-songs:checked ~ nav label[for="tab-songs"],
+        #tab-donate:checked ~ nav label[for="tab-donate"],
+        #tab-contact:checked ~ nav label[for="tab-contact"] {
+            background: var(--primary-gradient);
+            color: white;
+            box-shadow: 0 4px 12px rgba(95, 37, 159, 0.4);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 15px;
+        }
+
+        .page-section {
+            display: none;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(95, 37, 159, 0.06);
+            margin-bottom: 30px;
+            border-top: 5px solid var(--accent-color);
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #tab-about:checked ~ .container #sec-about,
+        #tab-committee:checked ~ .container #sec-committee,
+        #tab-sahyog:checked ~ .container #sec-sahyog,
+        #tab-donors:checked ~ .container #sec-donors,
+        #tab-gallery:checked ~ .container #sec-gallery,
+        #tab-songs:checked ~ .container #sec-songs,
+        #tab-donate:checked ~ .container #sec-donate,
+        #tab-contact:checked ~ .container #sec-contact {
+            display: block;
+        }
+
+        section h2 {
+            font-family: 'Teko', sans-serif;
+            font-size: 2.4rem;
+            color: var(--primary-color);
+            margin-bottom: 18px;
+            border-bottom: 2px solid #f3eafd;
+            padding-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .story-text {
+            text-align: justify;
+            font-size: 1.05rem;
+            color: #444;
+            margin-bottom: 18px;
+            line-height: 1.8;
+        }
+        .committee-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+            margin-top: 18px;
+        }
+        .card {
+            background: linear-gradient(135deg, #ffffff, #f9f6ff);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #e9dffc;
+            box-shadow: 0 4px 10px rgba(95,37,159,0.04);
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+        }
+        .card h3 {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            margin-bottom: 6px;
+        }
+        .card p {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+        .sahyog-box {
+            background: #f0f9f1;
+            border-left: 6px solid #27ae60;
+            padding: 22px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+        .appeal-box {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border-left: 6px solid var(--accent-color);
+            padding: 22px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        /* WhatsApp Group Banner Box */
+        .whatsapp-banner {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            border: 2px dashed #25D366;
+            padding: 22px;
+            border-radius: 14px;
+            text-align: center;
+            margin-top: 25px;
+        }
+        .wa-btn {
+            display: inline-block;
+            background-color: #25D366;
+            color: white;
+            padding: 12px 26px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+            margin-top: 12px;
+            transition: transform 0.2s;
+        }
+        .wa-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+            margin-top: 15px;
+        }
+        .gallery-item {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #e9dffc;
+            box-shadow: 0 4px 12px rgba(95,37,159,0.05);
+            text-align: center;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .gallery-item p {
+            padding: 10px;
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 0.95rem;
+        }
+
+        /* Songs / Audio list */
+        .song-card {
+            background: linear-gradient(135deg, #fff9f0, #fff0f5);
+            border: 1px solid #fce4ec;
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .song-card h3 {
+            color: var(--primary-color);
+            font-size: 1.15rem;
+        }
+        audio {
+            width: 100%;
+            border-radius: 30px;
+            outline: none;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+        table th, table td {
+            padding: 14px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+        table th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+        }
+        table tr:nth-child(even) {
+            background-color: #f7f3fc;
+        }
+        .donation-box {
+            background: linear-gradient(135deg, #fffbf0, #fff5e6);
+            padding: 25px;
+            border-radius: 14px;
+            border: 2px dashed var(--accent-color);
+            text-align: center;
+        }
+        .upi-box {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border: 1px solid #ffe0b2;
+        }
+        .upi-box p {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            font-weight: 700;
+            word-break: break-all;
+        }
+        .qr-img {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+            margin-top: 15px;
+            border-radius: 10px;
+            border: 2px solid var(--primary-color);
+            padding: 5px;
+            background: #fff;
+        }
+        .contact-info {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            background: #f7f3fc;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #e9dffc;
+        }
+        .contact-info p {
+            margin-bottom: 10px;
+        }
+        .map-btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .map-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-color), #e65100);
+            color: white;
+            padding: 13px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            box-shadow: 0 4px 15px rgba(255, 111, 0, 0.3);
+            transition: transform 0.2s;
+        }
+        .map-btn:hover {
+            transform: translateY(-2px);
+        }
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 18px;
+            margin-top: 40px;
+            font-size: 0.9rem;
+            border-top: 3px solid var(--gold-color);
+        }
+        @media(max-width: 600px) {
+            header h1 {
+                font-size: 2.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hidden Radio Inputs to control tab switching without JS -->
+    <input type="radio" id="tab-about" name="tab-group" checked>
+    <input type="radio" id="tab-committee" name="tab-group">
+    <input type="radio" id="tab-sahyog" name="tab-group">
+    <input type="radio" id="tab-donors" name="tab-group">
+    <input type="radio" id="tab-gallery" name="tab-group">
+    <input type="radio" id="tab-songs" name="tab-group">
+    <input type="radio" id="tab-donate" name="tab-group">
+    <input type="radio" id="tab-contact" name="tab-group">
+
+    <header>
+        <h1>ॐ शिवाय नमः</h1>
+        <h1>Shiv Shakti Dham</h1>
+        <p>📍 नेमाटोल कसबा, पूर्णिया (बिहार)</p>
+    </header>
+
+    <!-- Navigation Labels acting as Tabs -->
+    <nav>
+        <label for="tab-about">📜 गाथा</label>
+        <label for="tab-committee">👥 समिति</label>
+        <label for="tab-sahyog">🤝 जनसहयोग</label>
+        <label for="tab-donors">📋 दानदाता</label>
+        <label for="tab-gallery">📸 गालरी</label>
+        <label for="tab-songs">🎵 भजन (6)</label>
+        <label for="tab-donate">💳 सहयोग</label>
+        <label for="tab-contact">📞 संपर्क</label>
+    </nav>
+
+    <!-- Temple Banner Image at the Top -->
+    <div style="max-width: 900px; margin: 25px auto 0 auto; padding: 0 15px; text-align: center;">
+        <img src="temple.png" alt="Shiv Shakti Dham Temple" style="width: 100%; max-height: 450px; object-fit: cover; border-radius: 16px; box-shadow: 0 6px 20px rgba(95, 37, 159, 0.15); border: 3px solid var(--gold-color);">
+    </div>
+
+    <div class="container">
+        
+        <!-- About / History Section -->
+        <section id="sec-about" class="page-section">
+            <h2>📜 मंदिर निर्माण और संघर्ष की संपूर्ण गाथा</h2>
+            <p class="story-text">
+                <strong>ऐतिहासिक पृष्ठभूमि:</strong> नेमाटोल कसबा की धरती पर स्थापित पुराना शिव मंदिर लगभग 60 से 70 वर्ष प्राचीन है। यह मंदिर मूल रूप से एक निजी परिवार (बोकाई साह के परिवार) के संरक्षण और देखरेख में संचालित होता था। समय के निरंतर बीतने के साथ-साथ इस प्राचीन संरचना की स्थिति अत्यंत जर्जर हो चुकी थी। मंदिर की छत और दीवारें इतनी कमजोर हो गई थीं कि कभी भी कोई बड़ा हादसा या दुर्घटना घटने की आशंका बनी रहती थी, जिससे यहाँ आने वाले श्रद्धालुओं की सुरक्षा खतरे में थी।
+            </p>
+            <p class="story-text">
+                <strong>परिवर्तन और विरोध के स्वर:</strong> जब क्षेत्र के समस्त ग्रामवासियों और प्रबुद्ध नागरिकों ने मिलकर यह महसूस किया कि इस प्राचीन मंदिर का जीर्णोद्धार और सार्वजनिक विकास बेहद जरूरी है, तो एक प्रस्ताव रखा गया कि इसे सार्वजनिक मंदिर के रूप में विकसित किया जाए। परंतु विडम्बना यह रही कि उस निजी परिवार ने इस प्रस्ताव का कड़ा विरोध किया। उन्होंने इस धार्मिक स्थल को अपनी निजी पैतृक संपत्ति बताते हुए इसे समाज के सुपुर्द करने या इसके सार्वजनिक विस्तार से साफ इनकार कर दिया।
+            </p>
+            <p class="story-text">
+                <strong>मान-मनुहार और प्रशासनिक प्रयास:</strong> इस गतिरोध को दूर करने के लिए समाज के गणमान्य लोगों, स्थानीय जनप्रतिनिधियों (जैसे चेयरमैन, वाइस चेयरमैन और वार्ड पार्षदों) ने परिवार के सदस्यों के साथ कई दौर की बैठकें कीं। उन्हें पूरी तरह आश्वस्त किया गया कि मंदिर का मालिकाना हक और सम्मान पूरी तरह सुरक्षित रखा जाएगा, यहां तक कि समिति का अध्यक्ष पद भी उन्हीं के परिवार के पास रहेगा और मुख्य संस्थापक/निर्माणकर्ता के रूप में 'बोकाई साह' का नाम स्वर्णिम अक्षरों में अंकित किया जाएगा। इसके बावजूद वे अपनी जिद पर अड़े रहे और किसी भी समझौते के लिए तैयार नहीं हुए।
+            </p>
+            <p class="story-text">
+                <strong>एक नई शुरुआत और शुभ नींव (1 मई 2026):</strong> जब हरसंभव प्रयास के बाद भी कोई सकारात्मक समाधान नहीं निकला, तब चेयरमैन महोदय और नेमाटोल के दूरदर्शी एवं धर्मप्रेमी नागरिकों ने सूझबूझ का परिचय देते हुए एक ऐतिहासिक और साहसिक निर्णय लिया। समाज की आस्था को अछूता रखते हुए एक बिल्कुल नई जगह पर भव्य 'शिव शक्ति धाम' के निर्माण का संकल्प लिया गया। माननीय चेयरमैन महोदय द्वारा स्वयं आगे बढ़कर इस पवित्र कार्य के लिए एक बेहतरीन भूमि को चिन्हित कर उपलब्ध कराया गया। तत्पश्चात, पूरे विधि-विधान और धार्मिक मंत्रोच्चार के साथ <strong>1 मई 2026</strong> को इस भव्य मंदिर की नींव (शिलान्यास) रखी गई, और आज इसी एकता व अथक प्रयासों के बल पर निर्माण कार्य तीव्र गति से आगे बढ़ रहा है।
+            </p>
+        </section>
+
+        <!-- Committee Members Section -->
+        <section id="sec-committee" class="page-section">
+            <h2>👥 मंदिर निर्माण एवं संचालन समिति</h2>
+            
+            <h3 style="color: var(--primary-color); margin-top: 15px; margin-bottom: 10px; font-size: 1.3rem;">🔹 संरक्षक</h3>
+            <div class="committee-grid" style="margin-bottom: 25px;">
+                <div class="card">
+                    <h3>संरक्षक</h3>
+                    <p>शंकर प्रसाद साह</p>
+                </div>
+            </div>
+
+            <h3 style="color: var(--primary-color); margin-bottom: 15px; font-size: 1.3rem;">🔹 मुख्य पदाधिकारी</h3>
+            <div class="committee-grid">
+                <div class="card">
+                    <h3>अध्यक्ष</h3>
+                    <p>पंकज कुमार मोदी</p>
+                </div>
+                <div class="card">
+                    <h3>उपाध्यक्ष</h3>
+                    <p>चंद्रमणि सुमन (सोनू)</p>
+                </div>
+                <div class="card">
+                    <h3>सचिव</h3>
+                    <p>मनोज कुमार साह</p>
+                </div>
+                <div class="card">
+                    <h3>कोषाध्यक्ष</h3>
+                    <p>प्रिंस राज</p>
+                </div>
+                <div class="card">
+                    <h3>सह-कोषाध्यक्ष</h3>
+                    <p>अमृत कुमार मोदी</p>
+                </div>
+            </div>
+
+            <h3 style="color: var(--primary-color); margin-top: 25px; margin-bottom: 15px; font-size: 1.3rem;">🔹 सम्मानित सदस्यगण</h3>
+            <div class="committee-grid">
+                <div class="card">
+                    <h3>सदस्य</h3>
+                    <p>आकाश कुमार</p>
+                </div>
+                <div class="card">
+                    <h3>सदस्य</h3>
+                    <p>अजय कुमार</p>
+                </div>
+                <div class="card">
+                    <h3>सदस्य</h3>
+                    <p>सूरज कुमार</p>
+                </div>
+                <div class="card">
+                    <h3>सदस्य</h3>
+                    <p>सुरेश मोदी</p>
+                </div>
+                <div class="card">
+                    <h3>सदस्य</h3>
+                    <p>मीठू मोदी</p>
+                </div>
+            </div>
+
+            <h3 style="color: var(--primary-color); margin-top: 25px; margin-bottom: 15px; font-size: 1.3rem;">🔹 मुख्य बाल सेवा दल</h3>
+            <div class="committee-grid">
+                <div class="card">
+                    <h3>बाल सेवा दल</h3>
+                    <p>आयुष मोदी</p>
+                </div>
+                <div class="card">
+                    <h3>बाल सेवा दल</h3>
+                    <p>छोटू कुमार</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sahyog Section with WhatsApp Group Link -->
+        <section id="sec-sahyog" class="page-section">
+            <h2>🤝 समाज का अमूल्य जनसहयोग और चंदे की अपील</h2>
+            <div class="sahyog-box">
+                <p class="story-text" style="margin-bottom: 15px;">
+                    <strong>एकता और आस्था की मिसाल:</strong> "शिव शक्ति धाम" का यह पावन निर्माण कार्य केवल ईंट और पत्थरों का जोड़ नहीं है, बल्कि यह नेमाटोल कसबा के समस्त ग्रामवासियों की अटूट आस्था, आपसी भाईचारे और सामूहिक संकल्प का जीवंत प्रतीक है। जब समाज ने यह ठाना कि भगवान भोलेनाथ का एक भव्य और दिव्य धाम बनेगा, तो हर व्यक्ति ने अपनी क्षमता से बढ़कर इसमें अपना योगदान देना शुरू कर दिया।
+                </p>
+                <p class="story-text" style="margin-bottom: 15px;">
+                    <strong>सामग्री और आर्थिक सहभागिता:</strong> इस महान धर्म-कार्य में हर वर्ग के लोगों ने दिल खोलकर हिस्सा लिया है। किसी ने अपनी श्रद्धा के अनुसार प्रत्यक्ष आर्थिक सहायता पहुंचाई, तो किसी ने निर्माण कार्य को गति देने के लिए आवश्यक भवन निर्माण सामग्री जैसे सीमेंट, बालू, छड़, गिट्टी और अन्य संसाधन सीधे उपलब्ध कराए। जिन लोगों के पास धन या सामग्री की सीमा थी, उन्होंने शारीरिक श्रम (श्रमदान) और अपनी निष्ठावान सेवाओं से इस पवित्र यज्ञ में आहुति दी।
+                </p>
+            </div>
+
+            <!-- WhatsApp Group Joining Banner -->
+            <div class="whatsapp-banner">
+                <h3 style="color: #2e7d32; font-family: 'Teko', sans-serif; font-size: 2rem; margin-bottom: 5px;">💬 व्हाट्सएप ग्रुप से जुड़ें</h3>
+                <p style="color: #444; font-size: 1rem; margin-bottom: 10px;">मंदिर निर्माण से जुड़ी सभी बैठकों, अपडेट्स और जानकारियों के लिए हमारे आधिकारिक व्हाट्सएप ग्रुप से जुड़ें:</p>
+                <a href="https://chat.whatsapp.com/Gp7udy6JhVFGGmB75DxScy?s=cl&p=a&mlu=4&ilr=4" target="_blank" class="wa-btn">📱 व्हाट्सएप ग्रुप जॉइन करें</a>
+            </div>
+
+            <div class="appeal-box">
+                <h3 style="color: var(--accent-color); font-family: 'Teko', sans-serif; font-size: 2rem; margin-bottom: 10px;">📢 मंदिर निर्माण हेतु चंदे की सादर अपील</h3>
+                <p class="story-text" style="margin-bottom: 12px; color: #333;">
+                    <strong>धर्मप्रेमी बंधुओं, माताओं और युवाओं,</strong><br>
+                    जैसा कि सर्वविदित है कि भगवान शिव और माता शक्ति के इस नए धाम का निर्माण कार्य जोर-शोर से चल रहा है, इस विशाल और भव्य मंदिर को पूर्ण रूप से आकार देने के लिए अभी और भी आर्थिक सहयोग और सामग्री (चंदे) की आवश्यकता है। एक भव्य मंदिर का निर्माण अकेले किसी एक व्यक्ति का कार्य नहीं है, यह संपूर्ण समाज और धर्मप्रेमियों के सामूहिक सहयोग से ही संभव होता है।
+                </p>
+                <p class="story-text" style="margin-bottom: 0; color: #333;">
+                    अतः "शिव शक्ति धाम निर्माण समिति" आप सभी से हाथ जोड़कर विनम्र अपील करती है कि अपनी श्रद्धा, सामर्थ्य और शक्ति के अनुसार इस पुण्य कार्य में बढ़-चढ़कर गुप्तदान या सप्रेम आर्थिक सहयोग (चंदा) प्रदान करें। आपके द्वारा दिया गया एक-एक सहयोग भगवान भोलेनाथ के इस दरबार को सजाने और संवारने में अहम भूमिका निभाएगा। आइए, इस महान कार्य में अपनी सहभागिता सुनिश्चित करें और देवाधिदेव महादेव की असीम कृपा के भागी बनें। हर हर महादेव! 🔱
+                </p>
+            </div>
+        </section>
+
+        <!-- Donors List Section -->
+        <section id="sec-donors" class="page-section">
+            <h2>📋 प्रमुख दानदाता एवं सहयोगी सूची</h2>
+            <p class="story-text">मंदिर निर्माण में प्रत्यक्ष रूप से सहयोग करने वाले सम्मानित महानुभावों की सूची:</p>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>क्र.सं.</th>
+                            <th>दानदाता का नाम</th>
+                            <th>पता</th>
+                            <th>सहयोग का विवरण (राशि / सामग्री)</th>
+                            <th>दिनांक</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>S k modi</td>
+                            <td>kasba</td>
+                            <td>1500 bricks</td>
+                            <td>10/4/26</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>p raj</td>
+                            <td>Nematol</td>
+                            <td>balu</td>
+                            <td>15/04/26</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>P k sah</td>
+                            <td>Nematol</td>
+                            <td>gitti</td>
+                            <td>20/6/26</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>cm suman</td>
+                            <td>kasba</td>
+                            <td>100 bag cement</td>
+                            <td>25/8/26</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>m kumar</td>
+                            <td>kasba</td>
+                            <td>2 quintal char</td>
+                            <td>30/9/26</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>ak modi</td>
+                            <td>Nematol</td>
+                            <td>1000 rupyaa</td>
+                            <td>10/10/26</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="font-size: 0.9rem; color: #666; margin-top: 15px; text-align: center;">*(आपकी गूगल शीट के अनुसार दानदाताओं की सूची अपडेट कर दी गई है)*</p>
+        </section>
+
+        <!-- Gallery Section (Added multiple images img1 to img13) -->
+        <section id="sec-gallery" class="page-section">
+            <h2>📸 मंदिर फोटो गालरी</h2>
+            <p class="story-text">शिव शक्ति धाम और शिलान्यास स्थल की तस्वीरें:</p>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="img1.jpg" alt="Gallery Image 1">
+                    <p>तस्वीर 1</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="img2.jpg" alt="Gallery Image 2">
+                    <p>तस्वीर 2</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="img3.jpg" alt="Gallery Image 3">
+                    <p>तस्वीर 3</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="img4.jpg" alt="Gallery Image 4">
+                    <p>तस्वीर 4</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="img5.jpg" alt="Gallery Image 5">
+                    <p>तस्वीर 5</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="img6.jpg" alt="Gallery Image 6">
+                    <p>तस्वीर 6</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="img7.jpg" alt="Gallery Image 7">
+                    <p>तस्वीर 7</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="img8.jpg" alt="Gallery Image 8">
+                    <p>तस्वीर 8</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="img9.jpg" alt="Gallery Image 9">
+                    <p>तस्वीर 9</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="img10.jpg" alt="Gallery Image 10">
+                    <p>तस्वीर 10</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="img11.jpg" alt="Gallery Image 11">
+                    <p>तस्वीर 11</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="img12.jpg" alt="Gallery Image 12">
+                    <p>तस्वीर 12</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="img13.jpg" alt="Gallery Image 13">
+                    <p>तस्वीर 13</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Songs / Bhajan Section (6 Songs Added) -->
+        <section id="sec-songs" class="page-section">
+            <h2>🎵 शिव भजन एवं संगीत (6 भजन)</h2>
+            <p class="story-text">भक्तिमय माहौल के लिए हमारे विशेष शिव भजनों का आनंद लें:</p>
+            
+            <div class="song-card">
+                <h3>1. भजन 1</h3>
+                <audio controls>
+                    <source src="song1.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+            <div class="song-card">
+                <h3>2. भजन 2</h3>
+                <audio controls>
+                    <source src="song2.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+            <div class="song-card">
+                <h3>3. भजन 3</h3>
+                <audio controls>
+                    <source src="song3.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+            <div class="song-card">
+                <h3>4. भजन 4</h3>
+                <audio controls>
+                    <source src="song4.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+            <div class="song-card">
+                <h3>5. भजन 5</h3>
+                <audio controls>
+                    <source src="song5.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+            <div class="song-card">
+                <h3>6. भजन 6</h3>
+                <audio controls>
+                    <source src="song6.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+        </section>
+
+        <!-- Online Donation Section with QR Code -->
+        <section id="sec-donate" class="page-section">
+            <h2>💳 मंदिर निर्माण में सहयोग दें</h2>
+            <p class="story-text" style="text-align: center;">धर्म के इस महान और पावन कार्य में आप भी अपना योगदान नीचे दिए गए QR कोड या UPI ID के माध्यम से सीधे भेज सकते हैं:</p>
+            <div class="donation-box">
+                <p style="font-size: 1.15rem; font-weight: 600; color: var(--primary-color);">शिव शक्ति धाम निर्माण समिति (सहयोग राशि)</p>
+                
+                <!-- QR Code Image Added -->
+                <div>
+                    <img src="qr.jpg" alt="Donation QR Code" class="qr-img">
+                </div>
+
+                <div class="upi-box" style="margin-top: 15px;">
+                    <p>UPI ID: 9097650717-3@ibl</p>
+                </div>
+                <p style="margin-top: 12px; font-size: 0.95rem; color: #555;">आप QR कोड स्कैन करके या सीधे UPI ID पर PhonePe, Google Pay, Paytm से राशि भेज सकते हैं।</p>
+            </div>
+        </section>
+
+        <!-- Contact & Map Section -->
+        <section id="sec-contact" class="page-section">
+            <h2>📞 स्थान एवं संपर्क</h2>
+            <div class="contact-info">
+                <p>📍 <strong>पता:</strong> नेमाटोल कसबा, जिला - पूर्णिया, बिहार - 854330</p>
+                <hr style="border: 0; border-top: 1px solid #dcd6f7; margin: 12px 0;">
+                <p>👤 <strong>अध्यक्ष:</strong> पंकज कुमार मोदी</p>
+                <p>👤 <strong>कोषाध्यक्ष:</strong> प्रिंस राज</p>
+                <p>👤 <strong>सह-कोषाध्यक्ष:</strong> अमृत कुमार मोदी</p>
+            </div>
+            <div class="map-btn-container">
+                <a href="https://maps.app.goo.gl/2jsrP5UKxh9kJGX86" target="_blank" class="map-btn">📍 गूगल मैप पर लोकेशन देखें</a>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Shiv Shakti Dham, Nematol Kasba, Purnia | सर्वाधिकार सुरक्षित</p>
+    </footer>
+</body>
+</html>
